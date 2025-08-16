@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
-import { Task } from 'zone.js/lib/zone-impl';
-
-type Tasks = Task[];
 
 @Component({
   selector: 'app-tasks',
@@ -16,10 +13,14 @@ export class TasksComponent {
   @Input({ required: true }) name!: string;
 
   get selectedUserTasks() {
-    return this.dummyTasks.filter((task) => task.userId === this.id);
+    return this.tasks.filter((task) => task.userId === this.id);
   }
 
-  dummyTasks = [
+  onComplete(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  tasks = [
     {
       id: 't1',
       userId: 'u1',
