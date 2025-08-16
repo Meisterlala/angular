@@ -1,2 +1,15 @@
-<p>tasks works!</p>
-<p>User is {{ name }}</p>
+<section id="tasks">
+  <header>
+    <h2>{{ name }}'s Task</h2>
+    <menu>
+      <button>Add Task</button>
+    </menu>
+  </header>
+  <ul>
+    <li>
+      @for (task of selectedUserTasks; track task) {
+        <app-task [task]="task" />
+      }
+    </li>
+  </ul>
+</section>
