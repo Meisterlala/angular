@@ -1,10 +1,17 @@
 <section id="tasks">
+  @if (newTaskVisible) {
+    <app-new-task
+      (cancel)="newTaskVisible = false"
+      (submit)="addTask($event); newTaskVisible = false"
+    />
+  }
   <header>
     <h2>{{ name }}'s Task</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="newTaskVisible = true">Add Task</button>
     </menu>
   </header>
+  <div></div>
   <ul>
     <li>
       @for (task of selectedUserTasks; track task) {
