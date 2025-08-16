@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Angular Projects Portfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        background: linear-gradient(135deg, #0d1117, #161b22, #21262d);
+        background-attachment: fixed;
+        color: #f0f6fc;
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            ellipse at top,
+            rgba(221, 0, 49, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at bottom,
+            rgba(196, 0, 196, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 40px 0;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .project-card,
+      .course-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-card:hover,
+      .course-card:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .course-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        text-align: left;
+        margin: 20px 0;
+      }
+
+      .tech-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .tech-list li {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 12px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border-left: 3px solid #dd0031;
+        transition: all 0.3s ease;
+      }
+
+      .tech-list li:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(221, 0, 49, 0.2),
+          rgba(196, 0, 196, 0.2)
+        );
+        border-left-color: #c400c4;
+      }
+
+      .angular-logo {
+        height: 70%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .angular-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .project-logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .project-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      @media (max-width: 768px) {
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .course-content {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+
+      .project-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .project-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .project-description {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        text-align: center;
+        margin: 50px 0 30px 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #dd0031, #c400c4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+      }
+
+      .project-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #dd0031, #c400c4);
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(221, 0, 49, 0.3);
+      }
+
+      .project-link:hover {
+        background: linear-gradient(135deg, #c400c4, #8e44ad);
+        box-shadow: 0 6px 20px rgba(196, 0, 196, 0.4);
+        transform: translateY(-2px);
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>My Angular Journey</h1>
+        <p class="subtitle">
+          A collection of my Angular applications and learning experiences
+        </p>
+      </header>
+
+      <!-- Course information section -->
+      <div class="course-section">
+        <div class="course-card">
+          <div class="angular-logo">
+            <img src="./angular_wordmark_gradient.png" alt="Angular Logo" />
+          </div>
+          <div class="course-content">
+            <div class="course-description">
+              <h2 class="project-title">Angular - The Complete Guide</h2>
+              <p class="project-description">
+                I've completed the comprehensive Angular course by Maximilian
+                Schwarzmüller and learned a tremendous amount about modern
+                Angular development.
+              </p>
+
+              <p class="project-description">
+                <strong>About the Course:</strong> This course was built for
+                Angular 19+ and uses standalone components & signals right from
+                the start. It covers modern Angular features like signals,
+                standalone components, new control flow, and much more. The
+                course also includes older Angular versions & syntax, making it
+                comprehensive for any Angular project.
+              </p>
+
+              <p class="project-description">
+                This page showcases the projects and concepts I've learned
+                throughout the course modules.
+              </p>
+            </div>
+            <div class="course-technologies">
+              <p class="project-description">
+                <strong>Technologies Covered:</strong>
+              </p>
+              <ul class="tech-list">
+                <li>Angular 19+</li>
+                <li>TypeScript</li>
+                <li>Standalone Components</li>
+                <li>Signals</li>
+                <li>Routing</li>
+                <li>Forms</li>
+                <li>HTTP Access</li>
+                <li>Dependency Injection</li>
+                <li>Modules</li>
+                <li>State Management (NgRx)</li>
+              </ul>
+            </div>
+          </div>
+          <a
+            href="https://www.udemy.com/course/the-complete-guide-to-angular-2"
+            target="_blank"
+            class="project-link"
+            >View Course on Udemy</a
+          >
+        </div>
+      </div>
+
+      <h2 class="section-title">My Angular Projects</h2>
+      <div class="projects-grid">
+        <!-- Project cards will be added here as you create more projects -->
+        <div class="project-card">
+          <div class="project-logo">
+            <img
+              src="../01-starting-project/assets/task-management-logo.png"
+              alt="Task Management Logo"
+            />
+          </div>
+          <h2 class="project-title">Angular Essentials</h2>
+          <p class="project-description">
+            A foundational Angular To-Do application demonstrating core concepts
+            and best practices.
+          </p>
+          <a href="/01-starting-project/" class="project-link">View Project</a>
+        </div>
+      </div>
+
+      <footer>
+        <p>© 2025 Robin Rottstädt</p>
+      </footer>
+    </div>
+  </body>
+</html>
