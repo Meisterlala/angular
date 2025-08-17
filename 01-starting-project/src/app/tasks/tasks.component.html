@@ -1,9 +1,6 @@
 <section id="tasks">
   @if (newTaskVisible) {
-    <app-new-task
-      (cancel)="newTaskVisible = false"
-      (submit)="addTask($event); newTaskVisible = false"
-    />
+    <app-new-task (cancel)="newTaskVisible = false" [userId]="id" />
   }
   <header>
     <h2>{{ name }}'s Task</h2>
@@ -13,10 +10,10 @@
   </header>
   <div></div>
   <ul>
-    <li>
-      @for (task of selectedUserTasks; track task) {
-        <app-task [task]="task" (complete)="onComplete($event)" />
-      }
-    </li>
+    @for (task of selectedUserTasks; track task) {
+      <li>
+        <app-task [task]="task" />
+      </li>
+    }
   </ul>
 </section>
