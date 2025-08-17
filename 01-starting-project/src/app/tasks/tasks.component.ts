@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { Task } from './task/task.model';
+import { newTask } from './new-task/new-task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -24,8 +25,15 @@ export class TasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  addTask(task: Task) {
-    this.tasks.push(task);
+  addTask(taskData: newTask) {
+    this.tasks.push({
+      summary: taskData.summary,
+      title: taskData.title,
+      userId: this.id,
+      dueDate: taskData.date,
+      // Pretty bad as an ID, but it works for the demo
+      id: new Date().getTime().toString(),
+    });
   }
 
   tasks = [
