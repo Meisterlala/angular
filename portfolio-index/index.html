@@ -194,6 +194,17 @@
         transform: translateY(-2px);
       }
 
+      /* Buttons container (course action links) */
+      .action-links {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px; /* ensures spacing if they wrap */
+        margin-top: 10px;
+        width: 100%;
+      }
+
       @media (max-width: 768px) {
         body {
           padding: 5px;
@@ -259,12 +270,20 @@
                 This page showcases the projects and concepts I've learned
                 throughout the course modules.
               </p>
-              <a
-                href="https://www.udemy.com/course/the-complete-guide-to-angular-2"
-                target="_blank"
-                class="project-link"
-                >View Course on Udemy</a
-              >
+              <div class="action-links">
+                <a
+                  href="https://www.udemy.com/course/the-complete-guide-to-angular-2"
+                  target="_blank"
+                  class="project-link"
+                  >View Course on Udemy</a
+                >
+                <a
+                  href="https://github.com/Meisterlala/angular"
+                  target="_blank"
+                  class="project-link"
+                  >Github Source Code</a
+                >
+              </div>
             </div>
             <div class="course-technologies">
               <p class="project-description">
