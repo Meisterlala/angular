@@ -1,1 +1,7 @@
-<h1 class="center">Practice Time!</h1>
+<app-header></app-header>
+<div>
+  <app-user-input (calculate)="onCalculate($event)"></app-user-input>
+  @if (this.currentUserData) {
+    <app-investment-results [userData]="this.currentUserData"> </app-investment-results>
+  }
+</div>
