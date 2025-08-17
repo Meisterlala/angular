@@ -12,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 export class UserInput {
   @Output() calculate = new EventEmitter<UserInputData>();
 
-  initalInvestment?: string;
-  annualInvestment?: string;
-  expectedReturn?: string;
-  duration?: string;
+  initalInvestment: string = '2000';
+  annualInvestment: string = '400';
+  expectedReturn: string = '3';
+  duration: string = '12';
 
   onSubmit() {
     this.calculate.emit({
