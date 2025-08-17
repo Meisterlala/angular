@@ -13,15 +13,14 @@ WORKDIR /app
 # We'll copy everything first and then build each project individually
 COPY . .
 
-# Build the first Angular project
+# Build the Angular projects
 WORKDIR /app/01-starting-project
 RUN pnpm install
 RUN pnpm run build --base-href /01-starting-project/
 
-# If you add more projects in the future, you can add build steps here like:
-# WORKDIR /app/02-another-project
-# RUN pnpm install
-# RUN pnpm run build
+WORKDIR /app/02-finance-calculator
+RUN pnpm install
+RUN pnpm run build --base-href /02-finance-calculator/
 
 # Stage 2: Serve all applications with Nginx
 FROM nginx:alpine
@@ -34,6 +33,7 @@ COPY portfolio-index /usr/share/nginx/html
 
 # Copy the built Angular applications to their respective directories
 COPY --from=builder /app/01-starting-project/dist/essentials/browser /usr/share/nginx/html/01-starting-project
+COPY --from=builder /app/02-finance-calculator/dist/essentials/browser /usr/share/nginx/html/01-starting-project
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
