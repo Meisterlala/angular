@@ -22,6 +22,10 @@ WORKDIR /app/02-finance-calculator
 RUN pnpm install
 RUN pnpm run build --base-href /02-finance-calculator/
 
+WORKDIR /app/04-traffik-dashboard
+RUN pnpm install
+RUN pnpm run build --base-href /04-traffik-dashboard/
+
 # Stage 2: Serve all applications with Nginx
 FROM nginx:alpine
 
@@ -34,6 +38,7 @@ COPY portfolio-index /usr/share/nginx/html
 # Copy the built Angular applications to their respective directories
 COPY --from=builder /app/01-starting-project/dist/essentials/browser /usr/share/nginx/html/01-starting-project
 COPY --from=builder /app/02-finance-calculator/dist/02-finance-calculator/browser /usr/share/nginx/html/02-finance-calculator
+COPY --from=builder /app/04-traffik-dashboard/dist/cmp-deep-dive /usr/share/nginx/html/04-traffik-dashboard
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
