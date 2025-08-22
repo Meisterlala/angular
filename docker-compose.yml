@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # Enable BuildKit for better caching and multi-stage optimization
+      args:
+        BUILDKIT_INLINE_CACHE: 1
     ports:
       - "8080:80"
     environment:
