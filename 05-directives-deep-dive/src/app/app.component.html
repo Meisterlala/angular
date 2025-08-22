@@ -4,4 +4,19 @@
   <hr />
 
   <app-auth />
+
+  <!-- @if (isAdmin()) { -->
+  <!--   <p>Only Admins can see this</p> -->
+  <!-- } -->
+
+  <p *appAuth="'admin'" class="protected-content admin">
+    Only Admins can see this
+  </p>
+  <p *appAuth="'user'" class="protected-content authenticated">
+    Regular users can see this
+  </p>
+  <p *appAuth="'guest'" class="protected-content unauthenticated">
+    Guest can see this text. Enter "admin admin" or "user user" into the login
+    fields to login
+  </p>
 </main>
