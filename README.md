@@ -8,7 +8,7 @@ Im running this inside a k8s cluseter. You can view it here: [angular-portfolio.
 
 ## Running the project yourself
 
-You can run this project with docker and then acces on `http://localhost:8080`
+You can run this project with docker and then access it on `http://localhost:8080`
 
 ```bash
 docker compose up --build
