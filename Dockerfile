@@ -4,7 +4,7 @@
 # - Dynamically discovers Angular projects (looks for angular.json) and builds each into /app/build-artifacts/<project-folder>
 # - Final stage serves all artifacts with nginx
 
-FROM node:lts AS builder
+FROM --platform=$BUILDPLATFORM node:lts AS builder
 
 # Install pnpm globally
 RUN npm install -g pnpm
